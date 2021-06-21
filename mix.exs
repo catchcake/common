@@ -1,10 +1,9 @@
-defmodule Common.MixProject do
+defmodule CatchCakeCommon.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :common,
-
+      app: :catchcake_common,
       version: "0.1.0",
       elixir: "~> 1.8",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -23,7 +22,6 @@ defmodule Common.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-
       extra_applications: [:logger]
     ]
   end
@@ -37,8 +35,7 @@ defmodule Common.MixProject do
     [
       {:ex_doc, "~> 0.21", only: :dev},
       {:credo, "~> 1.2", only: [:dev, :test]},
-      {:excoveralls, "~> 0.13", only: :test},
-
+      {:excoveralls, "~> 0.13", only: :test}
     ]
   end
 end

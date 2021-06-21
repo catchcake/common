@@ -1,4 +1,4 @@
-# Common
+# CatchCakeCommon
 > TODO: Add description**
 
 
@@ -7,7 +7,7 @@
 ```elixir
 def deps do
   [
-    {:common, "~> 0.1.0"}
+    {:catchcake_common, "~> 0.1.0"}
   ]
 end
 ```

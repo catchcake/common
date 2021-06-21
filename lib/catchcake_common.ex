@@ -1,0 +1,2 @@
+defmodule CatchCakeCommon do
+end
