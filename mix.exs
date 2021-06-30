@@ -33,9 +33,10 @@ defmodule CatchCakeCommon.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_doc, "~> 0.21", only: :dev},
-      {:credo, "~> 1.2", only: [:dev, :test]},
-      {:excoveralls, "~> 0.13", only: :test}
+      {:credo, "~> 1.5", only: [:dev, :test]},
+      {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.24", only: :dev},
+      {:excoveralls, "~> 0.14", only: :test}
     ]
   end
 end
