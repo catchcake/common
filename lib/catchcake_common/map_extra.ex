@@ -29,15 +29,15 @@ defmodule CatchCakeCommon.MapExtra do
 
   ## Examples
       iex> a = %{a: 1, b: %{c: 2}}
-      iex> fetch_in(a, [:a])
+      iex> MapExtra.fetch_in(a, [:a])
       {:ok, 1}
 
       iex> a = %{a: 1, b: %{c: 2}}
-      iex> fetch_in(a, [:b, :c])
+      iex> MapExtra.fetch_in(a, [:b, :c])
       {:ok, 2}
 
       iex> a = %{a: 1, b: %{c: 2}}
-      iex> fetch_in(a, [:b, :d])
+      iex> MapExtra.fetch_in(a, [:b, :d])
       :error
   """
   @spec fetch_in(map(), [Map.key()]) :: {:ok, Map.value()} | :error
@@ -62,7 +62,7 @@ defmodule CatchCakeCommon.MapExtra do
 
   ## Examples
       iex> a = %{a: 1, b: %{c: 2}}
-      iex> fetch_in!(a, [:a])
+      iex> MapExtra.fetch_in!(a, [:a])
       1
   """
   @spec fetch_in!(map(), [Map.key()]) :: Map.value()
@@ -71,5 +71,22 @@ defmodule CatchCakeCommon.MapExtra do
       {:ok, value} -> value
       :error -> raise(PathError, path: path, term: map)
     end
+  end
+
+  @doc """
+  Updates a key in a nested structure.
+
+  ## Examples
+      iex> map = %{a: %{b: %{c: 1}, d: 2}, e: 3}
+      iex> MapExtra.update_in(map, [:a, :b, :c], fn x -> x + 10 end)
+      %{a: %{b: %{c: 11}, d: 2}, e: 3}
+  """
+  @spec update_in(map(), nonempty_list(Map.key()), (any() -> any())) :: map()
+  def update_in(map, [key], f) do
+    Map.update!(map, key, f)
+  end
+
+  def update_in(map, [key | path], f) do
+    Map.update!(map, key, &__MODULE__.update_in(&1, path, f))
   end
 end
