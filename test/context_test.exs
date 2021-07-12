@@ -2,7 +2,7 @@ defmodule ContextTest do
   @moduledoc false
   use ExUnit.Case
 
-  import CatchCakeCommon.Context
+  alias CatchCakeCommon.Context
 
   doctest CatchCakeCommon.Context
 end
