@@ -3,7 +3,6 @@ defmodule MapExtraTest do
   use ExUnit.Case
 
   alias CatchCakeCommon.MapExtra
-  import CatchCakeCommon.MapExtra
 
   doctest CatchCakeCommon.MapExtra
 
