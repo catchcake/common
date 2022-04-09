@@ -89,4 +89,18 @@ defmodule CatchCakeCommon.MapExtra do
   def update_in(map, [key | path], f) do
     Map.update!(map, key, &__MODULE__.update_in(&1, path, f))
   end
+
+  @doc """
+  Returns a map where each value is the result of invoking fun on each corresponding value of source map.
+
+  ## Examples
+      iex> MapExtra.map(%{a: 1, b: 2}, fn val -> val * 10 end)
+      %{a: 10, b: 20}
+  """
+  @spec map(map(), (any() -> any())) :: map()
+  def map(map, fun) do
+    Enum.reduce(map, %{}, fn {key, value}, acc ->
+      Map.put(acc, key, fun.(value))
+    end)
+  end
 end
